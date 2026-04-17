@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pydantic
+google-generativeai
+python-dotenv
+korean-lunar-calendar
+sqlalchemy
+psycopg2-binary

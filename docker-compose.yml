@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # 1. 백엔드 (FastAPI)
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    env_file:
+      - .env
+    # 🌟 여기에 한국 타임존 설정을 추가합니다!
+    environment:
+      - TZ=Asia/Seoul
+    depends_on:
+      - db
+  # 2. 프론트엔드 (Next.js)
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app # 로컬 frontend 폴더를 동기화
+      - /app/node_modules # 패키지 폴더는 로컬과 충돌 방지를 위해 도커 내부에만 격리
+    depends_on:
+      - backend
+
+  # 3. 로컬 테스트용 DB (PostgreSQL) - 배포 시 Render DB로 대체될 녀석
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: saju_user
+      POSTGRES_PASSWORD: saju_password
+      POSTGRES_DB: sajudb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
