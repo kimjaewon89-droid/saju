@@ -118,7 +118,7 @@ async def get_saju_fortune(request: Request, user: UserInfo, db: Session = Depen
 
         if visitor:
             # 기록이 있다면 횟수 확인 (3회 제한)
-            if visitor.visit_count >= 10:
+            if visitor.visit_count >= 3:
                 return {"status": "error", "message": "오늘 우주의 기운을 모두 소진하셨습니다. (일일 최대 3회 제한) 내일 다시 찾아주세요!"}
             visitor.visit_count += 1
         else:
