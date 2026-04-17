@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react'; // 🌟 useEffect 추가
+import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
@@ -11,14 +11,13 @@ export default function Home() {
   const [result, setResult] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // 🌟 방문자 통계 상태 추가
   const [stats, setStats] = useState({ today: 0, total: 0 });
 
   const categories = ['금전운', '연애운', '직장운', '건강운'];
 
-  // 🌟 화면이 처음 켜질 때 백엔드에서 통계를 가져오는 함수
   useEffect(() => {
-    fetch(\${process.env.NEXT_PUBLIC_API_URL}/api/stats`)`
+    // 역슬래시 없이 순수 백틱 사용
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/stats`)
       .then(res => res.json())
       .then(data => {
         if(data.status === 'success') {
@@ -42,7 +41,8 @@ export default function Home() {
     setLoading(true);
     setResult('');
     try {
-      const res = await fetch(\${process.env.NEXT_PUBLIC_API_URL}/api/saju`, {`
+      // 역슬래시 없이 순수 백틱 사용
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/saju`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -64,7 +64,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 flex flex-col items-center py-12 px-4 relative font-sans">
 
-      {/* 🌟 레퍼런스 스타일의 풀스크린 로딩 애니메이션 */}
       {loading && (
         <div className="fixed inset-0 bg-white/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center transition-all duration-300">
           <div className="relative w-24 h-24 mb-6">
@@ -83,17 +82,14 @@ export default function Home() {
         </div>
       )}
 
-      {/* 헤더 타이틀 */}
       <div className="max-w-xl w-full text-center mb-10 mt-8">
         <h1 className="text-5xl font-black text-slate-900 mb-3 tracking-tight">무엇이든 물어보사주</h1>
         <p className="text-slate-500 text-lg">타고난 오행 기운으로 확인하는 프리미엄 운세</p>
       </div>
 
-      {/* 입력 폼 컨테이너 */}
       <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 mb-10">
         <form onSubmit={handleSubmit} className="space-y-6">
 
-          {/* 이름 & 성별 */}
           <div className="flex gap-4">
             <div className="flex-[2]">
               <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">이름</label>
@@ -112,7 +108,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 생년월일 */}
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">생년월일</label>
             <div className="flex gap-3">
@@ -128,7 +123,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 태어난 시간 */}
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">태어난 시간</label>
             <input type="time" required
@@ -136,7 +130,6 @@ export default function Home() {
               onChange={(e) => setFormData({...formData, time: e.target.value})} />
           </div>
 
-          {/* 운세 항목 선택 (Chips) */}
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">궁금한 운세 항목 (다중 선택)</label>
             <div className="flex flex-wrap gap-2">
@@ -153,7 +146,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* 주관식 질문 */}
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">구체적인 고민거리</label>
             <textarea
@@ -163,14 +155,12 @@ export default function Home() {
             />
           </div>
 
-          {/* 제출 버튼 */}
           <button type="submit" disabled={loading} className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg py-5 px-4 rounded-2xl shadow-lg shadow-indigo-200 transition-transform transform hover:-translate-y-1 active:scale-95">
             명식 분석 시작하기 ✨
           </button>
         </form>
       </div>
 
-      {/* 🌟 밝은 테마에 맞춘 결과 창 렌더링 */}
       {result && (
         <div className="max-w-xl w-full bg-indigo-50/50 rounded-3xl border-2 border-indigo-100 p-8 shadow-sm animate-in fade-in slide-in-from-bottom-6 duration-500">
           {result.startsWith('🚨') ? (
@@ -198,7 +188,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* 🌟 화면 하단 방문자 통계 뱃지 */}
       <div className="mt-auto pt-8 pb-6 text-slate-500 font-medium text-sm flex gap-4">
         <div className="bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm flex items-center gap-2">
           🔥 오늘 방문자 <strong className="text-indigo-600 text-base">{stats.today}</strong>명
