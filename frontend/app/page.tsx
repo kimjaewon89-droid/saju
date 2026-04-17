@@ -83,8 +83,8 @@ export default function Home() {
       )}
 
       <div className="max-w-xl w-full text-center mb-10 mt-8">
-        <h1 className="text-5xl font-black text-slate-900 mb-3 tracking-tight">무엇이든 물어보사주</h1>
-        <p className="text-slate-500 text-lg">타고난 오행 기운으로 확인하는 프리미엄 운세</p>
+        <h1 className="text-5xl font-black text-slate-900 mb-3 tracking-tight">무엇이든 물어보saju</h1>
+        <p className="text-slate-500 text-lg">내가 궁금한것을 물어보는 프리미엄 사주</p>
       </div>
 
       <div className="max-w-xl w-full bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 mb-10">
