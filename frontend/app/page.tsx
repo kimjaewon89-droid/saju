@@ -149,7 +149,7 @@ export default function Home() {
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">구체적인 고민거리</label>
             <textarea
-              placeholder="예: 올해 이직을 준비 중인데 언제쯤이 좋을까요?"
+              placeholder="예: 오늘 투자 할 때 좋은 방향은?"
               className="w-full bg-slate-50 border border-slate-300 text-slate-900 font-bold p-4 rounded-2xl min-h-[120px] outline-none focus:ring-2 focus:ring-indigo-500 transition-all resize-none"
               onChange={(e) => setFormData({...formData, question: e.target.value})}
             />
