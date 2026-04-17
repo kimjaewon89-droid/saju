@@ -18,7 +18,7 @@ export default function Home() {
 
   // 🌟 화면이 처음 켜질 때 백엔드에서 통계를 가져오는 함수
   useEffect(() => {
-    fetch(${process.env.NEXT_PUBLIC_API_URL}/api/stats)
+    fetch(\${process.env.NEXT_PUBLIC_API_URL}/api/stats`)`
       .then(res => res.json())
       .then(data => {
         if(data.status === 'success') {
@@ -42,7 +42,7 @@ export default function Home() {
     setLoading(true);
     setResult('');
     try {
-      const res = await fetch(${process.env.NEXT_PUBLIC_API_URL}/api/saju, {
+      const res = await fetch(\${process.env.NEXT_PUBLIC_API_URL}/api/saju`, {`
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
